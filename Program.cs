@@ -2,12 +2,22 @@
 {
     public static void Main()
     {
-        const double fridge = 200;
-        const double microwave = 300;
-        const double heater = 100;
+        Console.Clear();
+
+        Console.WriteLine("Enter the power of your fridge\n");
+        double fridge = int.Parse(Console.ReadLine());
+        Console.Clear();
+
+        Console.WriteLine("Enter the power of your microwave\n");
+        double microwave = int.Parse(Console.ReadLine());
+        Console.Clear();
+
+        Console.WriteLine("Enter the power of your heater\n");
+        double heater = int.Parse(Console.ReadLine());
+        Console.Clear();
 
         var total_energy = fridge + microwave + heater;
 
-        Console.WriteLine("The Energy used in total is {0} kwh", total_energy);
+        Console.WriteLine("Total value is {0}", total_energy);
     }
 }
