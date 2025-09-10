@@ -6,43 +6,30 @@
 
         const double electricity_price = 0.25;
 
-        Console.WriteLine("Enter the name of item_1");
-        string item_1 = Console.ReadLine();
-        Console.WriteLine("How much power in watts does your {0} use", item_1);
-        double item_1_power = int.Parse(Console.ReadLine());
-        Console.WriteLine("What is the average number of hours that your {0} for per day", item_1);
-        double item_1_hours = int.Parse(Console.ReadLine());
-        double item_1_consumption = item_1_power * item_1_hours / 1000;
-        Console.WriteLine("Daily consumption of {0} per day is {1}kwh", item_1, item_1_consumption);
-        double item_1_cost = item_1_consumption * electricity_price;
-        Console.WriteLine("Daily cost of {0} per day is ${1}\n", item_1, item_1_cost);
-
-        Console.WriteLine("Enter the name of item_2");
-        string item_2 = Console.ReadLine();
-        Console.WriteLine("How much power in watts does your {0} use", item_2);
-        double item_2_power = int.Parse(Console.ReadLine());
-        Console.WriteLine("What is the average number of hours that your {0} for per day", item_2);
-        double item_2_hours = int.Parse(Console.ReadLine());
-        double item_2_consumption = item_2_power * item_2_hours / 1000;
-        Console.WriteLine("Daily consumption of {0} per day is {1}kwh\n", item_2, item_2_consumption);
-        double item_2_cost = item_2_consumption * electricity_price;
-        Console.WriteLine("Daily cost of {0} per day is ${1}\n", item_2, item_2_cost);
+        string[] itemNames = new string[3];
+        double[] itemPowers = new double[3];
+        double[] itemHours = new double[3];
+        double[] itemConsumptions = new double[3];
+        double[] itemCosts = new double[3];
 
 
-        Console.WriteLine("Enter the name of item_3");
-        string item_3 = Console.ReadLine();
-        Console.WriteLine("How much power in watts does your {0} use", item_3);
-        double item_3_power = int.Parse(Console.ReadLine());
-        Console.WriteLine("What is the average number of hours that your {0} for per day", item_3);
-        double item_3_hours = int.Parse(Console.ReadLine());
-        double item_3_consumption = item_3_power * item_3_hours / 1000;
-        Console.WriteLine("Daily consumption of {0} per day is {1}kwh\n", item_3, item_3_consumption);
-        double item_3_cost = item_3_consumption * electricity_price;
-        Console.WriteLine("Daily cost of {0} per day is ${1}\n", item_3, item_3_cost);
+        for (int i = 1; i <= 3; i++)
+        {
+            Console.WriteLine("Enter the name of item_{0}", i);
+            itemNames[i - 1] = Console.ReadLine();
+            Console.WriteLine("How much power in watts does your {0} use", itemNames[i - 1]);
+            itemPowers[i - 1] = double.Parse(Console.ReadLine());
+            Console.WriteLine("What is the average number of hours that your {0} for per day", itemNames[i - 1]);
+            itemHours[i - 1] = double.Parse(Console.ReadLine());
+            itemConsumptions[i - 1] = itemPowers[i - 1] * itemHours[i - 1] / 1000;
+            Console.WriteLine("Daily consumption of {0} per day is {1}kwh", itemNames[i - 1], itemConsumptions[i - 1]);
+            itemCosts[i - 1] = itemConsumptions[i - 1] * electricity_price;
+            Console.WriteLine("Daily cost of {0} per day is ${1}\n", itemNames[i - 1], itemCosts[i - 1]);
+        }
 
-        var total_energy = item_1_consumption + item_2_consumption + item_3_consumption;
-        var total_hours = item_1_hours + item_2_hours + item_3_hours;
-        var total_cost = item_1_cost + item_2_cost + item_3_cost;
+        var total_energy = itemConsumptions[0] + itemConsumptions[1] + itemConsumptions[2];
+        var total_hours = itemHours[0] + itemHours[1] + itemHours[2];
+        var total_cost = itemCosts[0] + itemCosts[1] + itemCosts[2];
 
         Console.WriteLine("Total value is {0}kwh", total_energy);
         Console.WriteLine("Total amount of hours is {0}h", total_hours);
