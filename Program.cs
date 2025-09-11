@@ -1,4 +1,4 @@
-﻿public class EnergyCalc
+public class EnergyCalc
 {
     public static void Main()
     {
@@ -31,14 +31,36 @@
         var total_hours = itemHours[0] + itemHours[1] + itemHours[2];
         var total_cost = itemCosts[0] + itemCosts[1] + itemCosts[2];
 
-        Console.WriteLine("Total value is {0}kwh", total_energy);
-        Console.WriteLine("Total amount of hours is {0}h", total_hours);
-        Console.WriteLine("Total cost in euro is ${0}", total_cost);
+        Console.WriteLine("\n" + new string('-', 80));
+        Console.WriteLine("| {0,-20} | {1,-12} | {2,-12} | {3,-15} | {4,-12} |", 
+            "Item Name", "Power (W)", "Hours/Day", "Consumption (kWh)", "Cost ($)");
+        Console.WriteLine(new string('-', 80));
 
-        Console.WriteLine("Total cost in euro per day is ${0}", total_cost * 24);
-        Console.WriteLine("Total cost in euro per month is ${0}", total_cost * 720);
-        Console.WriteLine("Total cost in euro per year is ${0}", total_cost * 8760);
+        for (int i = 0; i < 3; i++)
+        {
+            Console.WriteLine("| {0,-20} | {1,-12:F2} | {2,-12:F2} | {3,-15:F3} | {4,-12:F2} |", 
+                itemNames[i], itemPowers[i], itemHours[i], itemConsumptions[i], itemCosts[i]);
+        }
 
-        Console.WriteLine("Total CO2 emissions is {0}kg", total_energy * co2_emission / 1000);
+        Console.WriteLine(new string('-', 80));
+        Console.WriteLine("| {0,-20} | {1,-12} | {2,-12} | {3,-15:F3} | {4,-12:F2} |", 
+            "TOTAL", "", "", total_energy, total_cost);
+        Console.WriteLine(new string('-', 80));
+
+        Console.WriteLine("\n" + new string('=', 50));
+        Console.WriteLine("COST PROJECTIONS");
+        Console.WriteLine(new string('=', 50));
+        Console.WriteLine("| {0,-30} | {1,-15} |", "Period", "Cost ($)");
+        Console.WriteLine(new string('-', 50));
+        Console.WriteLine("| {0,-30} | {1,-15:F2} |", "Per Day", total_cost * 24);
+        Console.WriteLine("| {0,-30} | {1,-15:F2} |", "Per Month (30 days)", total_cost * 720);
+        Console.WriteLine("| {0,-30} | {1,-15:F2} |", "Per Year (365 days)", total_cost * 8760);
+        Console.WriteLine(new string('-', 50));
+
+        Console.WriteLine("\n" + new string('=', 50));
+        Console.WriteLine("ENVIRONMENTAL IMPACT");
+        Console.WriteLine(new string('=', 50));
+        Console.WriteLine("Total CO2 emissions: {0:F2} kg", total_energy * co2_emission / 1000);
+        Console.WriteLine(new string('=', 50));
     }
 }
