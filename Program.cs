@@ -16,15 +16,15 @@ public class EnergyCalc
         for (int i = 1; i <= 3; i++)
         {
             Console.WriteLine("Enter the name of item_{0}", i);
-            itemNames[i - 1] = Console.ReadLine();
+            itemNames[i - 1] = Console.ReadLine() ?? "UNKNOWN";
             Console.WriteLine("How much power in watts does your {0} use", itemNames[i - 1]);
-            itemPowers[i - 1] = double.Parse(Console.ReadLine());
+            itemPowers[i - 1] = double.Parse(Console.ReadLine() ?? "0");
             Console.WriteLine("What is the average number of hours that your {0} for per day", itemNames[i - 1]);
-            itemHours[i - 1] = double.Parse(Console.ReadLine());
+            itemHours[i - 1] = double.Parse(Console.ReadLine() ?? "0");
             itemConsumptions[i - 1] = itemPowers[i - 1] * itemHours[i - 1] / 1000;
             Console.WriteLine("Daily consumption of {0} per day is {1}kwh", itemNames[i - 1], itemConsumptions[i - 1]);
             itemCosts[i - 1] = itemConsumptions[i - 1] * electricity_price;
-            Console.WriteLine("Daily cost of {0} per day is ${1}\n", itemNames[i - 1], itemCosts[i - 1]);
+            Console.WriteLine("Daily cost of {0} per day is €{1}\n", itemNames[i - 1], itemCosts[i - 1]);
         }
 
         var total_energy = itemConsumptions[0] + itemConsumptions[1] + itemConsumptions[2];
@@ -58,9 +58,9 @@ public class EnergyCalc
         Console.WriteLine(new string('=', 50));
         Console.WriteLine("| {0,-30} | {1,-15} |", "Period", "Cost ($)");
         Console.WriteLine(new string('-', 50));
-        Console.WriteLine("| {0,-30} | {1,-15:F2} |", "Per Day", total_cost * 24);
-        Console.WriteLine("| {0,-30} | {1,-15:F2} |", "Per Month (30 days)", total_cost * 720);
-        Console.WriteLine("| {0,-30} | {1,-15:F2} |", "Per Year (365 days)", total_cost * 8760);
+        Console.WriteLine("| {0,-30} | {1,-15:F2} |", "Per Day", total_cost);
+        Console.WriteLine("| {0,-30} | {1,-15:F2} |", "Per Month (30 days)", total_cost * 30);
+        Console.WriteLine("| {0,-30} | {1,-15:F2} |", "Per Year (365 days)", total_cost * 365);
         Console.WriteLine(new string('-', 50));
 
         Console.WriteLine("\n" + new string('=', 50));
@@ -69,7 +69,7 @@ public class EnergyCalc
         Console.ResetColor();
         Console.WriteLine(new string('=', 50));
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("Total CO2 emissions: {0:F2} kg", total_energy * co2_emission / 1000);
+        Console.WriteLine("Total CO2 emissions: {0:F2} kg per year", total_energy * 365 * co2_emission / 1000);
         Console.ResetColor();
         Console.WriteLine(new string('=', 50));
     }
