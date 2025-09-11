@@ -19,22 +19,21 @@ public class EnergyCalc
             itemNames[i - 1] = Console.ReadLine() ?? "UNKNOWN";
             Console.WriteLine("How much power in watts does your {0} use", itemNames[i - 1]);
             itemPowers[i - 1] = double.Parse(Console.ReadLine() ?? "0");
-            Console.WriteLine("What is the average number of hours that your {0} for per day", itemNames[i - 1]);
+            Console.WriteLine("What is the average number of hours your {0} runs per day?", itemNames[i - 1]);
             itemHours[i - 1] = double.Parse(Console.ReadLine() ?? "0");
             itemConsumptions[i - 1] = itemPowers[i - 1] * itemHours[i - 1] / 1000;
-            Console.WriteLine("Daily consumption of {0} per day is {1}kwh", itemNames[i - 1], itemConsumptions[i - 1]);
+            Console.WriteLine("Daily consumption of {0} is {1:F3} kWh", itemNames[i - 1], itemConsumptions[i - 1]);
             itemCosts[i - 1] = itemConsumptions[i - 1] * electricity_price;
             Console.WriteLine("Daily cost of {0} per day is €{1}\n", itemNames[i - 1], itemCosts[i - 1]);
         }
 
         var total_energy = itemConsumptions[0] + itemConsumptions[1] + itemConsumptions[2];
-        var total_hours = itemHours[0] + itemHours[1] + itemHours[2];
         var total_cost = itemCosts[0] + itemCosts[1] + itemCosts[2];
 
         Console.WriteLine("\n" + new string('-', 80));
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("| {0,-20} | {1,-12} | {2,-12} | {3,-15} | {4,-12} |",
-            "Item Name", "Power (W)", "Hours/Day", "Consumption (kWh)", "Cost ($)");
+            "Item Name", "Power (W)", "Hours/Day", "Consumption (kWh)", "Cost (€)");
         Console.ResetColor();
         Console.WriteLine(new string('-', 80));
 
@@ -56,7 +55,7 @@ public class EnergyCalc
         Console.WriteLine("COST PROJECTIONS");
         Console.ResetColor();
         Console.WriteLine(new string('=', 50));
-        Console.WriteLine("| {0,-30} | {1,-15} |", "Period", "Cost ($)");
+        Console.WriteLine("| {0,-30} | {1,-15} |", "Period", "Cost (€)");
         Console.WriteLine(new string('-', 50));
         Console.WriteLine("| {0,-30} | {1,-15:F2} |", "Per Day", total_cost);
         Console.WriteLine("| {0,-30} | {1,-15:F2} |", "Per Month (30 days)", total_cost * 30);
