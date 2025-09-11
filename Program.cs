@@ -33,20 +33,20 @@ public class EnergyCalc
 
         Console.WriteLine("\n" + new string('-', 80));
         Console.ForegroundColor = ConsoleColor.Cyan;
-        Console.WriteLine("| {0,-20} | {1,-12} | {2,-12} | {3,-15} | {4,-12} |", 
+        Console.WriteLine("| {0,-20} | {1,-12} | {2,-12} | {3,-15} | {4,-12} |",
             "Item Name", "Power (W)", "Hours/Day", "Consumption (kWh)", "Cost ($)");
         Console.ResetColor();
         Console.WriteLine(new string('-', 80));
 
         for (int i = 0; i < 3; i++)
         {
-            Console.WriteLine("| {0,-20} | {1,-12:F2} | {2,-12:F2} | {3,-15:F3} | {4,-12:F2} |", 
+            Console.WriteLine("| {0,-20} | {1,-12:F2} | {2,-12:F2} | {3,-15:F3} | {4,-12:F2} |",
                 itemNames[i], itemPowers[i], itemHours[i], itemConsumptions[i], itemCosts[i]);
         }
 
         Console.WriteLine(new string('-', 80));
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine("| {0,-20} | {1,-12} | {2,-12} | {3,-15:F3} | {4,-12:F2} |", 
+        Console.WriteLine("| {0,-20} | {1,-12} | {2,-12} | {3,-15:F3} | {4,-12:F2} |",
             "TOTAL", "", "", total_energy, total_cost);
         Console.ResetColor();
         Console.WriteLine(new string('-', 80));
