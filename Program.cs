@@ -32,8 +32,10 @@ public class EnergyCalc
         var total_cost = itemCosts[0] + itemCosts[1] + itemCosts[2];
 
         Console.WriteLine("\n" + new string('-', 80));
+        Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("| {0,-20} | {1,-12} | {2,-12} | {3,-15} | {4,-12} |", 
             "Item Name", "Power (W)", "Hours/Day", "Consumption (kWh)", "Cost ($)");
+        Console.ResetColor();
         Console.WriteLine(new string('-', 80));
 
         for (int i = 0; i < 3; i++)
@@ -43,12 +45,16 @@ public class EnergyCalc
         }
 
         Console.WriteLine(new string('-', 80));
+        Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine("| {0,-20} | {1,-12} | {2,-12} | {3,-15:F3} | {4,-12:F2} |", 
             "TOTAL", "", "", total_energy, total_cost);
+        Console.ResetColor();
         Console.WriteLine(new string('-', 80));
 
         Console.WriteLine("\n" + new string('=', 50));
+        Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("COST PROJECTIONS");
+        Console.ResetColor();
         Console.WriteLine(new string('=', 50));
         Console.WriteLine("| {0,-30} | {1,-15} |", "Period", "Cost ($)");
         Console.WriteLine(new string('-', 50));
@@ -58,9 +64,13 @@ public class EnergyCalc
         Console.WriteLine(new string('-', 50));
 
         Console.WriteLine("\n" + new string('=', 50));
+        Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("ENVIRONMENTAL IMPACT");
+        Console.ResetColor();
         Console.WriteLine(new string('=', 50));
+        Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("Total CO2 emissions: {0:F2} kg", total_energy * co2_emission / 1000);
+        Console.ResetColor();
         Console.WriteLine(new string('=', 50));
     }
 }
