@@ -5,13 +5,13 @@
         Console.Clear();
 
         const double electricity_price = 0.25;
+        const double co2_emission = 427;
 
         string[] itemNames = new string[3];
         double[] itemPowers = new double[3];
         double[] itemHours = new double[3];
         double[] itemConsumptions = new double[3];
         double[] itemCosts = new double[3];
-
 
         for (int i = 1; i <= 3; i++)
         {
@@ -38,5 +38,7 @@
         Console.WriteLine("Total cost in euro per day is ${0}", total_cost * 24);
         Console.WriteLine("Total cost in euro per month is ${0}", total_cost * 720);
         Console.WriteLine("Total cost in euro per year is ${0}", total_cost * 8760);
+
+        Console.WriteLine("Total CO2 emissions is {0}kg", total_energy * co2_emission / 1000);
     }
 }
